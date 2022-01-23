@@ -1,0 +1,137 @@
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: rgb(39, 38, 36);
+  overflow: hidden;
+}
+.lamp {
+  width: 50px;
+  height: 200px;
+  right: 18vw;
+  top: 200px;
+  perspective: 500px;
+  margin: 0 auto;
+}
+
+.lampstand {
+  position: absolute;
+  transform-style: preserve-3d;
+  transform: translateZ(-50px) translateX(-50%);
+  width: 50px;
+  height: 200px;
+  right: 44%;
+  top: 0;
+  left: 50%;
+}
+
+.lampstand.shadow {
+  top: 302%;
+  left: -65%;
+  bottom: 0;
+  transform-origin: 50% 0;
+  transform: translateX(-50%) scaleY(-1.1) scaleZ(2) rotateY(-30deg)
+    rotateX(-75deg) translateZ(300px);
+}
+
+.lampstand .bar {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  border-top-left-radius: 35px;
+  border-top-right-radius: 35px;
+  width: 20px;
+  border: 1px solid black;
+  border-top: 4px solid black;
+  height: 200px;
+  background: rgb(255, 255, 255);
+}
+
+.lampstand .holder {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 150px;
+  background: #333;
+}
+
+.lampstand .ball {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  width: 50px;
+  z-index: 2;
+  height: 50px;
+  border-radius: 50%;
+  background: rgb(243, 243, 243);
+  box-shadow: 6px 6px 2rem 3px white;
+}
+
+.lampstand .movement {
+  position: absolute;
+  height: 200px;
+  width: 50px;
+  transform-origin: 50% 10px;
+  animation: move 1600ms infinite ease-in-out;
+}
+.rotate {
+  background-color: rgb(243, 243, 243);
+  width: 5px;
+  height: 130px;
+  position: relative;
+  z-index: -1;
+  animation: counter 1.6s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+}
+.rotate::before,
+.rotate::after {
+  content: "";
+  box-shadow: 6px 6px 2rem 3px white;
+  background-color: rgb(255, 255, 255);
+  width: 30px;
+  border-radius: 50%;
+  height: 30px;
+  position: absolute;
+}
+.rotate::before {
+  top: -10%;
+  left: -10px;
+}
+.rotate::after {
+  bottom: -10%;
+  right: -10px;
+}
+.lampstand.shadow .bar,
+.lampstand.shadow .ball,
+.lampstand.shadow .holder,
+.lampstand.shadow .ball .rotate,
+.lampstand.shadow .ball .rotate::before,
+.lampstand.shadow .ball .rotate::after {
+  background: #3d3a34;
+}
+@keyframes counter {
+  0% {
+    transform: translate(20px, -5vh) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(20px, -5vh) rotate(360deg);
+  }
+  100% {
+    transform: translate(20px, -5vh) rotate(0deg);
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(-55deg);
+  }
+  50% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(-55deg);
+  }
+}
